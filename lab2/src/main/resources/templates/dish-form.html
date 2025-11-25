@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${dish != null} ? 'Edit Dish' : 'Add Dish'">Dish Form</title>
+</head>
+<body>
+<h1 th:text="${dish != null} ? 'Edit Dish' : 'Add Dish'">Dish Form</h1>
+
+<form th:action="@{${formAction}}" method="post">
+    <label>Dish ID:</label>
+    <input type="text" name="dishId" th:value="${dish != null} ? ${dish.dishId} : ''" required>
+
+    <label>Name:</label>
+    <input type="text" name="name" th:value="${dish != null} ? ${dish.name} : ''" required>
+
+    <label>Cuisine:</label>
+    <input type="text" name="cuisine" th:value="${dish != null} ? ${dish.cuisine} : ''" required>
+
+    <label>Preparation Time (minutes):</label>
+    <input type="number" name="preparationTime" th:value="${dish != null} ? ${dish.preparationTime} : 0" required>
+
+    <button type="submit" th:text="${dish != null} ? 'Update Dish' : 'Add Dish'"></button>
+</form>
+
+</body>
+</html>

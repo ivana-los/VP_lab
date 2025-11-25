@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Dishes</title>
+</head>
+<body>
+<h1>All Dishes</h1>
+
+<div th:if="${error}">
+    <p style="color:red;">Error: <span th:text="${error}"></span></p>
+</div>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>DishId</th>
+        <th>Name</th>
+        <th>Cuisine</th>
+        <th>Preparation Time</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="d : ${dishes_list}">
+        <td th:text="${d.id}"></td>
+        <td th:text="${d.dishId}"></td>
+        <td th:text="${d.name}"></td>
+        <td th:text="${d.cuisine}"></td>
+        <td th:text="${d.preparationTime}"></td>
+        <td>
+            <a th:href="@{/dishes/dish-form/{id}(id=${d.id})}">Edit</a>
+
+            <form th:action="@{/dishes/delete/{id}(id=${d.id})}" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('Delete this dish?');">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<a th:href="@{/dishes/dish-form}">Add New Dish</a>
+
+<h3>Chefs:</h3>
+<a th:href="@{/listChefs}">List of Chefs</a>
+</body>
+</html>
